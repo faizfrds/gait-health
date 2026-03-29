@@ -1,3 +1,6 @@
+# Walking Pattern Analysis System
+
+```mermaid
 graph TD
     A[User wears IMU on their shoe or ankle] --> B[Data acquired from sensors]
     
