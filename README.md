@@ -2,7 +2,7 @@
 Leveraging portable, low-cost gait sensing to monitor health
 
 ## What is the project about?
-This project explores the use of human gait patterns as an unobstrusive indicator of health status. By leveraging IMU sensors, we aim to capture motion data during walking and analyze it to detect potential health conditions, physical impairments, or changes in overall well-being. Gait is a rich biometric signal that reflects neurological, muscular, and skeletal health, making it a powerful yet underutilized tool for continuous health monitoring.
+This project explores the use of human gait patterns as an unobstrusive indicator of health status. To narrow down the scope of this project, we will target Parkinson's disease specifically. By leveraging IMU sensors, we aim to capture motion data during walking and analyze it to detect symptoms of Parkinson's. Gait is a rich biometric signal that reflects neurological, muscular, and skeletal health, making it a powerful yet underutilized tool for continuous health monitoring.
 
 ## Why is this project exciting for you and your group?
 

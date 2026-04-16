@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/Users/faizfirdaus/Documents/UMass/Spring 26/CS528/gait-health/build/CMakeFiles/bootloader
+/Users/faizfirdaus/Documents/UMass/Spring 26/CS528/gait-health/build/CMakeFiles/bootloader.rule
+/Users/faizfirdaus/Documents/UMass/Spring 26/CS528/gait-health/build/CMakeFiles/bootloader-complete.rule
+/Users/faizfirdaus/Documents/UMass/Spring 26/CS528/gait-health/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/Users/faizfirdaus/Documents/UMass/Spring 26/CS528/gait-health/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/Users/faizfirdaus/Documents/UMass/Spring 26/CS528/gait-health/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/Users/faizfirdaus/Documents/UMass/Spring 26/CS528/gait-health/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/Users/faizfirdaus/Documents/UMass/Spring 26/CS528/gait-health/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/Users/faizfirdaus/Documents/UMass/Spring 26/CS528/gait-health/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/Users/faizfirdaus/Documents/UMass/Spring 26/CS528/gait-health/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
