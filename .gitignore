@@ -1,0 +1,6 @@
+PLAN.md
+*.env
+
+build
+
+dataset/gait-in-parkinsons-disease-1.0.0.zip
