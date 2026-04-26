@@ -1,6 +1,6 @@
 {
     "idf.currentSetup": "/Users/faizfirdaus/.espressif/v5.5.2/esp-idf",
-    "idf.port": "/dev/tty.usbserial-110",
+    "idf.port": "/dev/tty.usbserial-10",
     "idf.flashType": "UART",
     "idf.openOcdConfigs": [
         "interface/ftdi/esp_ftdi.cfg",
