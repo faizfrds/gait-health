@@ -184,6 +184,8 @@ files: 66, windows: 594, features: 66
 | 5 | 463 | 115 | 0.948 |
 | **mean** | | | **0.912** |
 
+![Per-fold accuracy](figures/per_fold_accuracy.png)
+
 **Note on accuracy change:** Overall accuracy decreased from 93.8% (60 files) to 91.2% (66 files) because:
 1. The dataset is harder: more diverse healthy samples expose edge cases.
 2. Two new recordings (`healthy_20.txt` and `healthy_25.txt`) are borderline cases that the model struggles with.
@@ -192,6 +194,8 @@ files: 66, windows: 594, features: 66
 ### 4.2 Window-level performance (aggregated over all folds)
 
 **Overall accuracy: 0.912 (541 / 594 windows correct).**
+
+![Window-level confusion matrix](figures/confusion_matrix.png)
 
 Confusion matrix (rows = true, columns = predicted):
 
@@ -238,6 +242,8 @@ Misclassified files:
 
 ### 4.4 Feature importance
 
+![Top features by Random Forest importance](figures/feature_importances.png)
+
 Top 10 features by Random Forest impurity-decrease importance (final model fit on all 66 files, v2.0):
 
 | rank | importance | feature | interpretation |
@@ -272,6 +278,16 @@ The gyroscope shift reflects real biomechanics:
 - **Shuffling:** Reduced but continuous motion → medium gyroscope values.
 
 This is the first rigorous evidence that the classifier has learned a **motion-continuity distinction** aligned with the clinical presentation.
+
+Per-class distributions of four representative features — two textbook gait biomarkers (Freeze Index on `az`, step cadence) and two of the model's actually-most-useful features (locomotion-band power on `ay`, freeze-band power on `|a|`):
+
+![Per-class feature distributions](figures/feature_distributions.png)
+
+A 2D PCA projection of the full feature space confirms the same picture:
+
+![PCA projection of feature space](figures/feature_pca.png)
+
+PC1 + PC2 capture roughly half of total variance. Healthy windows form a fairly tight cluster, fog windows spread out into the high-PC2 region, and shuffling falls between the two — partially overlapping both. The non-trivial overlap in 2D explains the residual fog ↔ shuffling confusions in the matrix; the Random Forest separates these classes using nonlinear cuts in the full 66-d space that no 2D projection can fully render.
 
 ---
 
