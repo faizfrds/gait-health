@@ -50,8 +50,8 @@ GAIT_CONDITIONS = ["healthy", "shuffling", "fog"]
 
 # Repetitions per gait condition (can be customized per condition)
 REPS_PER_CONDITION = {
-    "healthy": 0,      # Multiple samples to capture natural variability
-    "shuffling": 20,    # Gait shuffling samples
+    "healthy": 25,      # Multiple samples to capture natural variability
+    "shuffling": 0,    # Gait shuffling samples
     "fog": 0,          # Freezing of Gait episodes (harder to collect)
 }
 
@@ -184,7 +184,7 @@ def main():
         print(f"### Starting condition: {condition_name.upper()} ({num_reps} recordings)")
         print(f"{'#'*60}")
 
-        for rep in range(16, num_reps + 1):
+        for rep in range(21, num_reps + 1):
             filepath = get_output_filepath(condition_name, rep)
             record_gait(ser, condition_name, filepath, rep, num_reps)
 

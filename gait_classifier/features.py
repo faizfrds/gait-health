@@ -60,7 +60,7 @@ def _magnitude_features(window: np.ndarray, fs: int) -> dict[str, float]:
     accel = window[:, :3]
     mag = np.linalg.norm(accel, axis=1)
     mag_centered = mag - np.mean(mag)
-    distance = max(int(0.3 * fs), 1)  # min 0.3s between steps -> max 200 steps/min
+    distance = max(int(0.3 * fs), 1)
     peaks, props = find_peaks(mag_centered, distance=distance, prominence=0.05)
     if len(peaks) >= 2:
         intervals = np.diff(peaks) / fs
@@ -71,6 +71,29 @@ def _magnitude_features(window: np.ndarray, fs: int) -> dict[str, float]:
         ipi_std = 0.0
     peak_amp = float(np.mean(props["prominences"])) if len(peaks) else 0.0
     f, pxx = _psd(mag, fs)
+    
+    # NEW: Features for movement continuity vs freezing
+    accel_mag = np.linalg.norm(accel, axis=1)
+    
+    # Jerk: rate of change of acceleration (high = sudden stops)
+    jerk = np.diff(accel_mag)
+    jerk_rms = float(np.sqrt(np.mean(jerk**2)))
+    jerk_std = float(np.std(jerk))
+    
+    # Movement continuity: fraction of time with meaningful motion
+    motion_threshold = np.percentile(accel_mag, 25)
+    motion_continuity = float(np.sum(accel_mag > motion_threshold) / len(accel_mag))
+    
+    # Acceleration smoothness: variance of rate of change
+    accel_rate = np.diff(mag)
+    accel_smoothness = float(np.std(accel_rate))
+    
+    # Step amplitude consistency: low CV = healthy, high CV = FOG/shuffling
+    if len(props["prominences"]) > 1:
+        amp_cv = float(np.std(props["prominences"]) / (np.mean(props["prominences"]) + 1e-10))
+    else:
+        amp_cv = 0.0
+    
     return {
         "mag_mean": float(np.mean(mag)),
         "mag_std": float(np.std(mag)),
@@ -82,6 +105,11 @@ def _magnitude_features(window: np.ndarray, fs: int) -> dict[str, float]:
         "step_ipi_std": ipi_std,
         "step_peak_amp": peak_amp,
         "step_count": float(len(peaks)),
+        "jerk_rms": jerk_rms,
+        "jerk_std": jerk_std,
+        "motion_continuity": motion_continuity,
+        "accel_smoothness": accel_smoothness,
+        "step_amplitude_cv": amp_cv,
     }
 
 
